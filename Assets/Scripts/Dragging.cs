@@ -1,14 +1,18 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DragAndDrop : MonoBehaviour
+public class Dragging : MonoBehaviour
 {
     [SerializeField] private InputAction mouseClick; // i didn't even know you could do this
+    [SerializeField] private InputAction mouseRelease;
     public float mouseDragSpeed = 10f;
 
     private Camera _mainCam;
     private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
+
+    public AmoebaPoint draggedPoint;
 
     private void Awake()
     {
@@ -30,9 +34,20 @@ public class DragAndDrop : MonoBehaviour
     private void MousePressed(InputAction.CallbackContext context)
     {
         RaycastHit2D hit = Physics2D.GetRayIntersection(_mainCam.ScreenPointToRay(Mouse.current.position.ReadValue()));
-        if (hit.collider != null && (hit.collider.gameObject.CompareTag("Draggable")))
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Draggable"))
         {
+            draggedPoint = hit.collider.gameObject.GetComponent<AmoebaPoint>();
+            draggedPoint.isBeingDragged = true;
             StartCoroutine(DragUpdate(hit.collider.gameObject));
+        }
+    }
+
+    private void Update()
+    {
+        if (draggedPoint != null && mouseClick.ReadValue<float>() == 0f)
+        {
+            draggedPoint.isBeingDragged = false;
+            draggedPoint = null;
         }
     }
 
