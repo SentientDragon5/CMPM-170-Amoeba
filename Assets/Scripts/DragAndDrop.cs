@@ -40,6 +40,8 @@ public class DragAndDrop : MonoBehaviour
     {
         float initialDistance = Vector3.Distance(selectedObject.transform.position, _mainCam.transform.position);
         Rigidbody2D rb = selectedObject.GetComponent<Rigidbody2D>();
+
+        // updates the velocity of the object based on mouse position while it is held every physics update
         while (mouseClick.ReadValue<float>() != 0f)
         {
             Ray ray = _mainCam.ScreenPointToRay(Mouse.current.position.ReadValue());
