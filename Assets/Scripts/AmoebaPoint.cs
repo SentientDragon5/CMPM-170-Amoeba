@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 
 public class AmoebaPoint : MonoBehaviour
 {
@@ -13,6 +12,8 @@ public class AmoebaPoint : MonoBehaviour
     public float distance = 4;
 
     public float speed = 2f;
+
+    public bool isBeingDragged = false;
 
     private void OnValidate()
     {
@@ -46,17 +47,18 @@ public class AmoebaPoint : MonoBehaviour
 
     private void Update()
     {
-
+        
     }
 
     private void FixedUpdate()
     {
+        if (isBeingDragged) return;
         foreach (GameObject point in neighbors)
         {
             if (Vector2.Distance(point.transform.position, transform.position) > distance)
             {
-                Vector3 direction = neighbors[0].transform.position - transform.position;
-                rb.linearVelocity = direction * speed;
+                Vector3 direction = point.transform.position - transform.position;
+                rb.AddForce(direction * speed);
             }
         }
     }
