@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2644976657675546788}
   - component: {fileID: 5236751438428304022}
   - component: {fileID: 1368063040086766269}
-  - component: {fileID: 277705811467294041}
+  - component: {fileID: 1541537296794410543}
   m_Layer: 0
   m_Name: Amoeba Point
   m_TagString: Draggable
@@ -156,24 +156,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!231 &277705811467294041
-SpringJoint2D:
+--- !u!114 &1541537296794410543
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4309952518605021323}
   m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 0
-  m_Distance: 2
-  m_DampingRatio: 0.5
-  m_Frequency: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab6b98cb774f5744ba5a14a89c0c68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmoebaPoint
+  center: {fileID: 0}
+  neighbors: []
+  distance: 5
+  speed: 0.2

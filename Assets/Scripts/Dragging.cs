@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DragAndDrop : MonoBehaviour
+public class Dragging : MonoBehaviour
 {
     [SerializeField] private InputAction mouseClick; // i didn't even know you could do this
     public float mouseDragSpeed = 10f;
