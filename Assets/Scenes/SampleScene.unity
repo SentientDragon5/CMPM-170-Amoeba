@@ -376,6 +376,10 @@ PrefabInstance:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 1184336950}
+    - target: {fileID: 1368063040086766269, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3186403473271353993, guid: 312e60965a3cf6d419155748176a9737, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.8
@@ -572,13 +576,16 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!64 &476198697
-MeshCollider:
+--- !u!68 &476198697
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476198694}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -587,13 +594,31 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 1.03, y: -0.72}
+  - {x: 2.03, y: -0.72}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &493122773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4309952518605021323, guid: 312e60965a3cf6d419155748176a9737, type: 3}
@@ -660,6 +685,10 @@ PrefabInstance:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 1184336950}
+    - target: {fileID: 1368063040086766269, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3186403473271353993, guid: 312e60965a3cf6d419155748176a9737, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.99
@@ -750,6 +779,10 @@ PrefabInstance:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 1184336950}
+    - target: {fileID: 1368063040086766269, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3186403473271353993, guid: 312e60965a3cf6d419155748176a9737, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.04
@@ -815,6 +848,10 @@ PrefabInstance:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 1184336950}
+    - target: {fileID: 1368063040086766269, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3186403473271353993, guid: 312e60965a3cf6d419155748176a9737, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.24
@@ -1083,13 +1120,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 15783109265706620, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
+      propertyPath: _collider
+      value: 
+      objectReference: {fileID: 476198697}
+    - target: {fileID: 15783109265706620, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
       propertyPath: edgeCollider
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 15783109265706620, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
       propertyPath: meshCollider
       value: 
-      objectReference: {fileID: 476198697}
+      objectReference: {fileID: 0}
     - target: {fileID: 15783109265706620, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
       propertyPath: 'points.Array.data[0]'
       value: 
@@ -1144,11 +1185,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8929360397905636620, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.53
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8929360397905636620, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.72
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8929360397905636620, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
       propertyPath: m_LocalPosition.z

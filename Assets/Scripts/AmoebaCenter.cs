@@ -12,8 +12,7 @@ public class AmoebaCenter : MonoBehaviour
 
     public List<Transform> points = new List<Transform>();
     public LineRenderer lr;
-    public MeshCollider meshCollider;
-
+    public EdgeCollider2D _collider;
 
     private void Awake()
     {
@@ -31,6 +30,7 @@ public class AmoebaCenter : MonoBehaviour
         transform.position = CalculateCentroid();
         CreateLine();
         CreateCollider();
+        _collider.transform.localPosition = -transform.position;
     }
 
     private Vector2 CalculateCentroid()
@@ -136,11 +136,25 @@ public class AmoebaCenter : MonoBehaviour
         }
     }
 
+    readonly List<Vector3> v3 = new List<Vector3>();
+    readonly List<Vector2> v2 = new List<Vector2>();
+
+
     private void CreateCollider()
     {
-        Mesh mesh = new Mesh();
-        lr.BakeMesh(mesh, true);
-        meshCollider.sharedMesh = mesh;
+        v3.Clear();
+        v2.Clear();
+        for (int i = 0;i < lr.positionCount ;i++) 
+        {
+            Vector2 asdf = lr.GetPosition(i);
+            v3.Add(new Vector2(asdf.x, asdf.y));
+        }
+
+        foreach (var v in v3)
+        {
+            v2.Add(v);
+        }
+        _collider.points = v2.ToArray();
     }
 
     // quadratic bezier curve formula from wiki
