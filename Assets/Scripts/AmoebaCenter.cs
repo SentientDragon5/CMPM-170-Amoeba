@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AmoebaCenter : MonoBehaviour
@@ -8,31 +9,28 @@ public class AmoebaCenter : MonoBehaviour
     public int raycastResolution = 80;
     public bool drawLines = false;
     public LayerMask amoebaPointLayer;
-    public EdgeCollider2D edgeCollider;
 
     public List<Transform> points = new List<Transform>();
-    private LineRenderer lr;
+    public LineRenderer lr;
+    public MeshCollider meshCollider;
 
-    private List<Vector2> colliderPoints = new List<Vector2>();
 
     private void Awake()
     {
-        lr = GetComponent<LineRenderer>();
-        edgeCollider = GetComponent<EdgeCollider2D>();
+        if (lr == null) lr = GetComponentInChildren<LineRenderer>();
     }
 
     private void Start()
     {
         ScanPoints();
         lr.positionCount = lineResolution * points.Count;
-        CreateLine();
     }
 
     private void Update()
     {
         transform.position = CalculateCentroid();
         CreateLine();
-
+        CreateCollider();
     }
 
     private Vector2 CalculateCentroid()
@@ -123,7 +121,6 @@ public class AmoebaCenter : MonoBehaviour
                 {
                     Vector2 point = QuadraticBezierCurve(points[i].transform, transform, points[0], t);
                     lr.SetPosition(count, point);
-                    colliderPoints.Add(point);
                     count++;
                 }
             }
@@ -133,7 +130,6 @@ public class AmoebaCenter : MonoBehaviour
                 {
                     Vector2 point = QuadraticBezierCurve(points[i].transform, transform, points[i + 1], t);
                     lr.SetPosition(count, point);
-                    colliderPoints.Add(point);
                     count++;
                 }
             }
@@ -142,7 +138,9 @@ public class AmoebaCenter : MonoBehaviour
 
     private void CreateCollider()
     {
-        edgeCollider.points = colliderPoints.ToArray();
+        Mesh mesh = new Mesh();
+        lr.BakeMesh(mesh, true);
+        meshCollider.sharedMesh = mesh;
     }
 
     // quadratic bezier curve formula from wiki
