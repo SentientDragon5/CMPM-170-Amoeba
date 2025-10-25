@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5236751438428304022}
   - component: {fileID: 1368063040086766269}
   - component: {fileID: 1541537296794410543}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Amoeba Point
   m_TagString: Draggable
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 0ff71627c0e4da14bad2d71a51809bdc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -170,5 +170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaPoint
   center: {fileID: 0}
   neighbors: []
-  distance: 5
-  speed: 0.2
+  distanceCenter: 4
+  distanceNeighbors: 4
+  speedAwayFromCenter: 2
+  speedTowardsEachOther: 0.2
+  isBeingDragged: 0

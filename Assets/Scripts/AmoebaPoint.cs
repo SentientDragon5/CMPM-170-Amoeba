@@ -1,25 +1,28 @@
-using UnityEngine;
-using System.Linq;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using UnityEngine;
 
 public class AmoebaPoint : MonoBehaviour
 {
-    private Rigidbody2D rb;
-
-    public GameObject center;
+    public AmoebaCenter center;
     public List<GameObject> neighbors = new List<GameObject>();
 
-    public float distance = 4;
-
-    public float speed = 2f;
-
+    public float distanceCenter = 4;
+    public float distanceNeighbors = 4;
+    public float speedAwayFromCenter = 2f;
+    public float speedTowardsEachOther = 0.2f;
     public bool isBeingDragged = false;
+
+    private Rigidbody2D rb;
+
 
     private void OnValidate()
     {
         if (center == null)
         {
-            center = GameObject.Find("Amoeba Center");
+            GameObject _ = GameObject.Find("Amoeba Center");
+            center = _.GetComponent<AmoebaCenter>();
         }
     }
 
@@ -30,45 +33,45 @@ public class AmoebaPoint : MonoBehaviour
 
     private void Start()
     {
-        if (neighbors.Count != 2)
-        {
-            GameObject[] list = GameObject.FindGameObjectsWithTag("Draggable");
-
-            // remove self from list
-            list = list.Where(p => p.name != gameObject.name).ToArray();
-
-            // sorts by distance
-            list = list.OrderBy((p) => (p.transform.position - transform.position).sqrMagnitude).ToArray();
-
-            neighbors.Add(list[0]);
-            neighbors.Add(list[1]);
-        }
+        neighbors.Clear();
+        GetClosestTwoPoints();
     }
 
-    private void Update()
-    {
-        
-    }
 
+    // movement stuff
     private void FixedUpdate()
     {
-        if (isBeingDragged) return;
+        // moves the point away from the center
+        if (Vector2.Distance(transform.position, center.transform.position) < distanceCenter)
+        {
+            Vector3 direction = transform.position - center.transform.position;
+            rb.AddForce(direction * speedAwayFromCenter);
+        }
+        //if (isBeingDragged) return;
+
+        // moves this point towards other points
         foreach (GameObject point in neighbors)
         {
-            if (Vector2.Distance(point.transform.position, transform.position) > distance)
+            if (Vector2.Distance(point.transform.position, transform.position) > distanceNeighbors)
             {
                 Vector3 direction = point.transform.position - transform.position;
-                rb.AddForce(direction * speed);
+                rb.AddForce(direction * speedTowardsEachOther);
             }
         }
     }
 
-    private void PrintArray(GameObject[] array)
+    private void GetClosestTwoPoints()
     {
-        for (int i = 0; i < array.Length; i++)
-        {
-            Debug.Log(array[i].name);
-        }
-        Debug.Log("----------------");
+        GameObject[] list = GameObject.FindGameObjectsWithTag("Draggable");
+
+        // remove self from list
+        list = list.Where(p => p.name != gameObject.name).ToArray();
+
+        // sorts by distance
+        list = list.OrderBy((p) => (p.transform.position - transform.position).sqrMagnitude).ToArray();
+
+        neighbors.Add(list[0]);
+        neighbors.Add(list[1]);
     }
+
 }
