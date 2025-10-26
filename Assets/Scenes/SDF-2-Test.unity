@@ -223,9 +223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SDF2
   points:
-  - {x: 0.23, y: 0.78, z: 0, w: 0.18}
-  - {x: 0.61, y: 0.7, z: 0, w: 0.23}
-  - {x: 0.35, y: 0.27, z: 0, w: 0.23}
+  - {x: 0.23, y: 0.78, z: 0.82, w: 0.18}
+  - {x: 0.61, y: 0.7, z: 0.09, w: 0.23}
+  - {x: 0.35, y: 0.27, z: 0.35, w: 0.23}
 --- !u!1 &1442975858
 GameObject:
   m_ObjectHideFlags: 0

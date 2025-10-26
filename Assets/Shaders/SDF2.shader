@@ -6,7 +6,6 @@ Shader "Custom/SDF2"
         _CircleColor ("Circle Color", Color) = (1,1,1,1)
         _OutlineColor ("Outline Color", Color) = (0,0,0,1)
         _OutlineThickness ("Outline Thickness", Range(0, 0.1)) = 0.01
-        _BlendStrength ("Blend Strength", Range(0.001, 0.5)) = 0.05
     }
     SubShader
     {
@@ -27,7 +26,6 @@ Shader "Custom/SDF2"
             fixed4 _CircleColor;
             fixed4 _OutlineColor;
             float _OutlineThickness;
-            float _BlendStrength;
 
             struct appdata
             {
@@ -62,11 +60,12 @@ Shader "Custom/SDF2"
                 for (int j = 0; j < _PointCount; j++)
                 {
                     float2 pos = _Points[j].xy;
-                    float radius = _Points[j].w;
+                    float radius = _Points[j].z;
+                    float pointBlendStrength = _Points[j].w;
                     
                     float dist = distance(i.uv, pos) - radius;
                     
-                    minDist = smin(minDist, dist, _BlendStrength);
+                    minDist = smin(minDist, dist, pointBlendStrength);
                 }
                 
                 // anti-aliasing
