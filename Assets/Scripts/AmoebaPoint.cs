@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using UnityEngine;
 
@@ -15,7 +14,10 @@ public class AmoebaPoint : MonoBehaviour
     public bool isBeingDragged = false;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
+    public float controlPointAlphaDragged = 0.8f;
+    public float controlPointAlphaNormal = 0.2f;
 
     private void OnValidate()
     {
@@ -29,6 +31,7 @@ public class AmoebaPoint : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -58,6 +61,8 @@ public class AmoebaPoint : MonoBehaviour
                 rb.AddForce(direction * speedTowardsEachOther);
             }
         }
+
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, isBeingDragged ? controlPointAlphaDragged : controlPointAlphaNormal);
     }
 
     private void GetClosestTwoPoints()

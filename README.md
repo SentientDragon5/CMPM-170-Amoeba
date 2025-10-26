@@ -2,12 +2,12 @@
 
 # Todo
 - [ ] movement
-  - [ ] drag points
-  - [ ] tension
+  - [x] drag points
+  - [x] tension
 - [ ] eating
   - [ ] add food
   - [ ] allow food to be eaten
   - [ ] add a control point or grow?
-- [ ] polish
-  - [ ] SDFs
-  - [ ] camera controller
+- [x] polish
+  - [x] SDFs
+  - [x] camera controller

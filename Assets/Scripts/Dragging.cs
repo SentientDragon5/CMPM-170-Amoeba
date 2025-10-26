@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +15,7 @@ public class Dragging : MonoBehaviour
     private Camera _mainCam;
     private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
 
-    public AmoebaPoint draggedPoint;
+    public List<AmoebaPoint> draggedPoints;
 
     private void Awake()
     {
@@ -43,8 +44,9 @@ public class Dragging : MonoBehaviour
             if (c != null && c.gameObject.CompareTag("Draggable"))
             {
                 var attenuation = Vector2.Distance(c.transform.position, mousePos);
-                draggedPoint = c.gameObject.GetComponent<AmoebaPoint>();
+                var draggedPoint = c.gameObject.GetComponent<AmoebaPoint>();
                 draggedPoint.isBeingDragged = true;
+                draggedPoints.Add(draggedPoint);
                 StartCoroutine(DragUpdate(c.gameObject));
             }
         }
@@ -52,10 +54,15 @@ public class Dragging : MonoBehaviour
 
     private void Update()
     {
-        if (draggedPoint != null && mouseClick.ReadValue<float>() == 0f)
+        for (int i = draggedPoints.Count - 1; i >= 0; i--)
         {
-            draggedPoint.isBeingDragged = false;
-            draggedPoint = null;
+            AmoebaPoint draggedPoint = draggedPoints[i];
+
+            if (draggedPoint != null && mouseClick.ReadValue<float>() == 0f)
+            {
+                draggedPoint.isBeingDragged = false;
+                draggedPoints.RemoveAt(i);
+            }
         }
     }
 
@@ -78,7 +85,7 @@ public class Dragging : MonoBehaviour
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, dragRadius);
-        
+
         Vector2 mousePos = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Gizmos.DrawWireSphere(mousePos, dragRadius);
     }
