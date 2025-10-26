@@ -10,6 +10,22 @@ public class AmoebaCollider : MonoBehaviour
     void Start()
     {
         col = GetComponent<EdgeCollider2D>();
+        RefreshPoints();
+    }
+
+    public Transform pointParent;
+    [ContextMenu("Refresh Points")]
+    public void RefreshPoints()
+    {
+        points.Clear();
+        for (int i = 0; i < pointParent.childCount; i++)
+        {
+            var p = pointParent.GetChild(i);
+            if (p.TryGetComponent(out AmoebaPoint ap))
+            {
+                points.Add(ap);
+            }
+        }
     }
 
     void FixedUpdate()

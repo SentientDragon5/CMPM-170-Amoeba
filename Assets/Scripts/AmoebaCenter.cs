@@ -24,9 +24,9 @@ public class AmoebaCenter : MonoBehaviour
 
     private void Update()
     {
-        transform.position = CalculateCentroid();
-        CreateCollider();
-        _collider.transform.localPosition = -transform.position;
+        // transform.position = CalculateCentroid();
+        // CreateCollider();
+        // _collider.transform.localPosition = -transform.position;
     }
 
     private Vector2 CalculateCentroid()
