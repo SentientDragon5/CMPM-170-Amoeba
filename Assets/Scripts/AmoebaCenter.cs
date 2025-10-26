@@ -11,24 +11,20 @@ public class AmoebaCenter : MonoBehaviour
     public LayerMask amoebaPointLayer;
 
     public List<Transform> points = new List<Transform>();
-    public LineRenderer lr;
     public EdgeCollider2D _collider;
 
     private void Awake()
     {
-        if (lr == null) lr = GetComponentInChildren<LineRenderer>();
     }
 
     private void Start()
     {
         ScanPoints();
-        lr.positionCount = lineResolution * points.Count;
     }
 
     private void Update()
     {
         transform.position = CalculateCentroid();
-        CreateLine();
         CreateCollider();
         _collider.transform.localPosition = -transform.position;
     }
@@ -110,32 +106,6 @@ public class AmoebaCenter : MonoBehaviour
         }
     }
 
-    private void CreateLine()
-    {
-        int count = 0;
-        for (int i = 0; i < points.Count; i++)
-        {
-            if (i == points.Count - 1)
-            {
-                for (float t = 0; t < 1; t += 1f / lineResolution)
-                {
-                    Vector2 point = QuadraticBezierCurve(points[i].transform, transform, points[0], t);
-                    lr.SetPosition(count, point);
-                    count++;
-                }
-            }
-            else
-            {
-                for (float t = 0; t < 1; t += 1f / lineResolution)
-                {
-                    Vector2 point = QuadraticBezierCurve(points[i].transform, transform, points[i + 1], t);
-                    lr.SetPosition(count, point);
-                    count++;
-                }
-            }
-        }
-    }
-
     readonly List<Vector3> v3 = new List<Vector3>();
     readonly List<Vector2> v2 = new List<Vector2>();
 
@@ -144,11 +114,6 @@ public class AmoebaCenter : MonoBehaviour
     {
         v3.Clear();
         v2.Clear();
-        for (int i = 0;i < lr.positionCount ;i++) 
-        {
-            Vector2 asdf = lr.GetPosition(i);
-            v3.Add(new Vector2(asdf.x, asdf.y));
-        }
 
         foreach (var v in v3)
         {

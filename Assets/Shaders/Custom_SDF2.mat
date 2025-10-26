@@ -34,12 +34,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _CircleCount: 1
+    - _OutlineThickness: 0.0284
     - _SDFSmoothness: 0.035
     m_Colors:
     - _BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CircleColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CircleColor: {r: 0.10155843, g: 0.49685526, b: 0.32001194, a: 0.28627452}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0.20974244, g: 0.6603774, b: 0.50421673, a: 0.22745098}
     - _SDFColor: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
