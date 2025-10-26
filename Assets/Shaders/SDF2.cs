@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
+[ExecuteAlways]
 public class SDF2 : MonoBehaviour
 {
     // x, y = position (0-1 UV space)
@@ -13,7 +14,7 @@ public class SDF2 : MonoBehaviour
 
     void OnEnable()
     {
-        mat = GetComponent<Renderer>().material;
+        mat = GetComponent<Renderer>().sharedMaterial;
     }
 
     void Update()
