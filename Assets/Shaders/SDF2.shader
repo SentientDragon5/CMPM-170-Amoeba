@@ -4,6 +4,8 @@ Shader "Custom/SDF2"
     {
         _BackgroundColor ("Background Color", Color) = (0,0,0,0)
         _CircleColor ("Circle Color", Color) = (1,1,1,1)
+        _OutlineColor ("Outline Color", Color) = (0,0,0,1)
+        _OutlineThickness ("Outline Thickness", Range(0, 0.1)) = 0.01
     }
     SubShader
     {
@@ -22,6 +24,8 @@ Shader "Custom/SDF2"
 
             fixed4 _BackgroundColor;
             fixed4 _CircleColor;
+            fixed4 _OutlineColor;
+            float _OutlineThickness;
 
             struct appdata
             {
@@ -46,6 +50,7 @@ Shader "Custom/SDF2"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = _BackgroundColor;
+                bool isFilled = false;
 
                 for (int j = 0; j < _PointCount; j++)
                 {
@@ -55,7 +60,23 @@ Shader "Custom/SDF2"
                     if (distance(i.uv, pos) < radius)
                     {
                         col = _CircleColor; 
+                        isFilled = true;
                         break;
+                    }
+                }
+
+                if (!isFilled)
+                {
+                    for (int j = 0; j < _PointCount; j++)
+                    {
+                        float2 pos = _Points[j].xy;
+                        float radius = _Points[j].w;
+
+                        if (distance(i.uv, pos) < radius + _OutlineThickness)
+                        {
+                            col = _OutlineColor;
+                            break;
+                        }
                     }
                 }
                 
