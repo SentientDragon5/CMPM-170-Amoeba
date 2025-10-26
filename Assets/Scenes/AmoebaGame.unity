@@ -165,7 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4052b9bfa9f074eb6bfba2487bf7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaCollider
-  points: []
+  points:
+  - {fileID: 1541537296947717090}
+  - {fileID: 1342009415}
+  - {fileID: 1772770155}
+  - {fileID: 1137475202}
+  - {fileID: 1157194626}
   pointParent: {fileID: 757996092}
 --- !u!68 &45140625
 EdgeCollider2D:
@@ -222,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc33590b9c2f944189d903b95e1a340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaEater
-  onEat:
+  refreshPoints:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 45140624}
@@ -251,6 +256,10 @@ MonoBehaviour:
         m_CallState: 2
   pointPrefab: {fileID: 8509268966379366426, guid: 312e60965a3cf6d419155748176a9737, type: 3}
   pointParent: {fileID: 757996092}
+  dieRadius: 13.22
+  center: {fileID: 2606851066508335258}
+  foodPrefab: {fileID: 1894757690544358804, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+  foodParent: {fileID: 1583561392}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +447,11 @@ Transform:
   - {fileID: 757996092}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &690101349 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7404434968531791306, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+  m_PrefabInstance: {fileID: 1556642313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &757996091
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +611,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79f3f3ebce934b4293f3c26f975a2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaSDFPoint
+--- !u!114 &1137475202 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 17484265177765806, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+  m_PrefabInstance: {fileID: 1137475198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab6b98cb774f5744ba5a14a89c0c68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmoebaPoint
 --- !u!1001 &1157194622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -670,6 +695,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79f3f3ebce934b4293f3c26f975a2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaSDFPoint
+--- !u!114 &1157194626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 17484265177765806, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+  m_PrefabInstance: {fileID: 1157194622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab6b98cb774f5744ba5a14a89c0c68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmoebaPoint
 --- !u!1 &1287850862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7980907914630060778, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
@@ -753,13 +789,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79f3f3ebce934b4293f3c26f975a2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaSDFPoint
+--- !u!114 &1342009415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 17484265177765806, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+  m_PrefabInstance: {fileID: 1342009411}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab6b98cb774f5744ba5a14a89c0c68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmoebaPoint
+--- !u!4 &1414223308 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7404434968531791306, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+  m_PrefabInstance: {fileID: 1454498919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1454498919
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1583561392}
     m_Modifications:
     - target: {fileID: 1894757690544358804, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
       propertyPath: m_Name
@@ -783,15 +835,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7404434968531791306, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7404434968531791306, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7404434968531791306, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7404434968531791306, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -816,7 +868,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1583561392}
     m_Modifications:
     - target: {fileID: 1894757690544358804, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
       propertyPath: m_Name
@@ -840,15 +892,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7404434968531791306, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7404434968531791306, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7404434968531791306, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7404434968531791306, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -867,6 +919,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+--- !u!1 &1583561391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1583561392}
+  m_Layer: 0
+  m_Name: Foods
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1583561392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583561391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1414223308}
+  - {fileID: 690101349}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1681996154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1137,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79f3f3ebce934b4293f3c26f975a2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaSDFPoint
+--- !u!114 &1772770155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 17484265177765806, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+  m_PrefabInstance: {fileID: 1772770151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab6b98cb774f5744ba5a14a89c0c68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmoebaPoint
 --- !u!1 &1817677759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1342,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1541537296947717090 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 17484265177765806, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+  m_PrefabInstance: {fileID: 8460074803302141140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab6b98cb774f5744ba5a14a89c0c68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmoebaPoint
 --- !u!1001 &2606851066508335257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1303,6 +1410,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
+--- !u!114 &2606851066508335258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 15783109265706620, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
+  m_PrefabInstance: {fileID: 2606851066508335257}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287850862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf36b50a286352449984bafc7937ec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmoebaCenter
 --- !u!114 &2606851066508335259 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8547829403217814066, guid: 27d467b43f6e61849b54d97612d95c5d, type: 3}
@@ -1397,5 +1515,4 @@ SceneRoots:
   - {fileID: 1817677760}
   - {fileID: 1865474670}
   - {fileID: 464093266}
-  - {fileID: 1454498919}
-  - {fileID: 1556642313}
+  - {fileID: 1583561392}

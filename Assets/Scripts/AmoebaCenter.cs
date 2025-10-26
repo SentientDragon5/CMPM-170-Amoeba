@@ -39,7 +39,7 @@ public class AmoebaCenter : MonoBehaviour
             ySum += points[i].transform.position.y;
         }
 
-        return new Vector2(xSum/ points.Count, ySum/ points.Count);
+        return new Vector2(xSum / points.Count, ySum / points.Count);
     }
 
     private void OnDrawGizmos()
@@ -74,7 +74,7 @@ public class AmoebaCenter : MonoBehaviour
         for (float t = 0; t <= 1; t += 1f / (raycastResolution / 4))
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(1, 0, 0), new Vector3(0, 1, 0), t), 100f, amoebaPointLayer);
-           
+
             if (hit && hit.collider.CompareTag("Draggable") && !points.Contains(hit.transform))
             {
                 points.Add(hit.transform);
@@ -98,7 +98,7 @@ public class AmoebaCenter : MonoBehaviour
         }
         for (float t = 0; t <= 1; t += 1f / (raycastResolution / 4))
         {
-           RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(0, -1, 0), new Vector3(1, 0, 0), t), 100f, amoebaPointLayer);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(0, -1, 0), new Vector3(1, 0, 0), t), 100f, amoebaPointLayer);
             if (hit && hit.collider.CompareTag("Draggable") && !points.Contains(hit.transform))
             {
                 points.Add(hit.transform);
