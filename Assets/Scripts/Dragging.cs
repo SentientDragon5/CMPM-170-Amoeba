@@ -9,6 +9,8 @@ public class Dragging : MonoBehaviour
     [SerializeField] private InputAction mouseRelease;
     public float mouseDragSpeed = 10f;
 
+    public float dragRadius = 1f;
+
     private Camera _mainCam;
     private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
 
@@ -33,12 +35,18 @@ public class Dragging : MonoBehaviour
 
     private void MousePressed(InputAction.CallbackContext context)
     {
-        RaycastHit2D hit = Physics2D.GetRayIntersection(_mainCam.ScreenPointToRay(Mouse.current.position.ReadValue()));
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Draggable"))
+        Vector2 mousePos = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Collider2D[] overlaps = Physics2D.OverlapCircleAll(mousePos, dragRadius);
+
+        foreach (Collider2D c in overlaps)
         {
-            draggedPoint = hit.collider.gameObject.GetComponent<AmoebaPoint>();
-            draggedPoint.isBeingDragged = true;
-            StartCoroutine(DragUpdate(hit.collider.gameObject));
+            if (c != null && c.gameObject.CompareTag("Draggable"))
+            {
+                var attenuation = Vector2.Distance(c.transform.position, mousePos);
+                draggedPoint = c.gameObject.GetComponent<AmoebaPoint>();
+                draggedPoint.isBeingDragged = true;
+                StartCoroutine(DragUpdate(c.gameObject));
+            }
         }
     }
 
@@ -64,5 +72,14 @@ public class Dragging : MonoBehaviour
             rb.linearVelocity = direction * mouseDragSpeed;
             yield return waitForFixedUpdate;
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, dragRadius);
+        
+        Vector2 mousePos = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Gizmos.DrawWireSphere(mousePos, dragRadius);
     }
 }

@@ -34,7 +34,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _CircleCount: 1
-    - _OutlineThickness: 0.0284
+    - _OutlineThickness: 0.0134
     - _SDFSmoothness: 0.035
     m_Colors:
     - _BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
