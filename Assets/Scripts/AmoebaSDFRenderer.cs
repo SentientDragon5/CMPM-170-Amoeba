@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [ExecuteAlways]
@@ -19,6 +20,23 @@ public class AmoebaSDFRenderer : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         mat = spriteRenderer.sharedMaterial;
+    }
+
+
+    public Transform pointParent;
+    [ContextMenu("Refresh Points")]
+    public void RefreshPoints()
+    {
+        List<AmoebaSDFPoint> pts = new();
+        for (int i = 0; i < pointParent.childCount; i++)
+        {
+            var p = pointParent.GetChild(i);
+            if (p.TryGetComponent(out AmoebaSDFPoint ap))
+            {
+                pts.Add(ap);
+            }
+        }
+        amoebaPoints = pts.ToArray();
     }
 
     void Update()
