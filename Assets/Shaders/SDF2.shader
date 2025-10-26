@@ -6,6 +6,7 @@ Shader "Custom/SDF2"
         _CircleColor ("Circle Color", Color) = (1,1,1,1)
         _OutlineColor ("Outline Color", Color) = (0,0,0,1)
         _OutlineThickness ("Outline Thickness", Range(0, 0.1)) = 0.01
+        _BlendStrength ("Blend Strength", Range(0.001, 0.5)) = 0.05
     }
     SubShader
     {
@@ -26,6 +27,7 @@ Shader "Custom/SDF2"
             fixed4 _CircleColor;
             fixed4 _OutlineColor;
             float _OutlineThickness;
+            float _BlendStrength;
 
             struct appdata
             {
@@ -47,38 +49,36 @@ Shader "Custom/SDF2"
                 return o;
             }
 
+            float smin(float a, float b, float k)
+            {
+                float h = max(0.0, min(1.0, (b - a + k) / (2.0 * k)));
+                return lerp(b, a, h) - k * h * (1.0 - h);
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = _BackgroundColor;
-                bool isFilled = false;
+                float minDist = 1e20; 
 
                 for (int j = 0; j < _PointCount; j++)
                 {
-                    float2 pos = _Points[j].xy; // Position from (x, y)
-                    float radius = _Points[j].w; // Radius from (w)
-
-                    if (distance(i.uv, pos) < radius)
-                    {
-                        col = _CircleColor; 
-                        isFilled = true;
-                        break;
-                    }
+                    float2 pos = _Points[j].xy;
+                    float radius = _Points[j].w;
+                    
+                    float dist = distance(i.uv, pos) - radius;
+                    
+                    minDist = smin(minDist, dist, _BlendStrength);
                 }
+                
+                // anti-aliasing
+                float crispEdge = 0.001;
+                float fill = smoothstep(crispEdge, -crispEdge, minDist);
 
-                if (!isFilled)
-                {
-                    for (int j = 0; j < _PointCount; j++)
-                    {
-                        float2 pos = _Points[j].xy;
-                        float radius = _Points[j].w;
+                float outline = smoothstep(_OutlineThickness + crispEdge, _OutlineThickness - crispEdge, minDist);
+                float outlineAmount = saturate(outline - fill);
 
-                        if (distance(i.uv, pos) < radius + _OutlineThickness)
-                        {
-                            col = _OutlineColor;
-                            break;
-                        }
-                    }
-                }
+                fixed4 col = _BackgroundColor;
+                col = lerp(col, _OutlineColor, outlineAmount);
+                col = lerp(col, _CircleColor, fill);
                 
                 clip(col.a - 0.1);
                 
