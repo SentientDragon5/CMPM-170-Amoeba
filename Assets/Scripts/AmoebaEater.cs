@@ -11,8 +11,6 @@ public class AmoebaEater : MonoBehaviour
     {
         col = GetComponent<EdgeCollider2D>();
         col.isTrigger = true;
-
-        onEat.AddListener(GainPoint);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -20,7 +18,8 @@ public class AmoebaEater : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Food food))
         {
             print("Ate");
-            onEat.Invoke(food);
+            GainPoint(food);
+            onEat.Invoke(food); // callbacks to renderer and collider (inspector)
             ConsumeFood(food);
         }
     }
@@ -30,7 +29,7 @@ public class AmoebaEater : MonoBehaviour
     void GainPoint(Food food)
     {
         Instantiate(pointPrefab, food.transform.position, Quaternion.identity, pointParent);
-        
+
     }
     void ConsumeFood(Food food)
     {

@@ -11,7 +11,7 @@ public class AmoebaCenter : MonoBehaviour
     public LayerMask amoebaPointLayer;
 
     public List<Transform> points = new List<Transform>();
-    public EdgeCollider2D _collider;
+    // public EdgeCollider2D _collider;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class AmoebaCenter : MonoBehaviour
 
     private void Update()
     {
-        // transform.position = CalculateCentroid();
+        transform.position = CalculateCentroid();
         // CreateCollider();
         // _collider.transform.localPosition = -transform.position;
     }
@@ -106,21 +106,21 @@ public class AmoebaCenter : MonoBehaviour
         }
     }
 
-    readonly List<Vector3> v3 = new List<Vector3>();
-    readonly List<Vector2> v2 = new List<Vector2>();
+    // readonly List<Vector3> v3 = new List<Vector3>();
+    // readonly List<Vector2> v2 = new List<Vector2>();
 
 
-    private void CreateCollider()
-    {
-        v3.Clear();
-        v2.Clear();
+    // private void CreateCollider()
+    // {
+    //     v3.Clear();
+    //     v2.Clear();
 
-        foreach (var v in v3)
-        {
-            v2.Add(v);
-        }
-        _collider.points = v2.ToArray();
-    }
+    //     foreach (var v in v3)
+    //     {
+    //         v2.Add(v);
+    //     }
+    //     _collider.points = v2.ToArray();
+    // }
 
     // quadratic bezier curve formula from wiki
     // P1 + (1-t)^2 * (P0 - P1) + t^2(P2 - P1), 0 <= t <= 1
