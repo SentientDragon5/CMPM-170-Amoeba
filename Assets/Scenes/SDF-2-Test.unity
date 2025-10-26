@@ -223,9 +223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SDF2
   points:
-  - {x: 0.23, y: 0.78, z: 0.82, w: 0.18}
-  - {x: 0.61, y: 0.7, z: 0.09, w: 0.23}
-  - {x: 0.35, y: 0.27, z: 0.35, w: 0.23}
+  - {x: 0.23, y: 0.76, z: 0.15, w: 0.3}
+  - {x: 0.61, y: 0.61, z: 0.13, w: 0.29}
+  - {x: 0.35, y: 0.27, z: 0.06, w: 0.45}
 --- !u!1 &1442975858
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +404,7 @@ Material:
     - _SdfSmoothing: 0.073
     - _Smoothing: 0.01
     m_Colors:
-    - _BackgroundColor: {r: 0, g: 0, b: 0, a: 0.8117647}
+    - _BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _CircleColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
