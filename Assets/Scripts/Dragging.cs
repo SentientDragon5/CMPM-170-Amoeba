@@ -73,9 +73,12 @@ public class Dragging : MonoBehaviour
         // updates the velocity of the object based on mouse position while it is held every physics update
         while (mouseClick.ReadValue<float>() != 0f)
         {
-            Ray ray = _mainCam.ScreenPointToRay(Mouse.current.position.ReadValue());
-            Vector3 direction = ray.GetPoint(initialDistance) - selectedObject.transform.position;
-            rb.linearVelocity = direction * mouseDragSpeed;
+            if (selectedObject != null)
+            {
+                Ray ray = _mainCam.ScreenPointToRay(Mouse.current.position.ReadValue());
+                Vector3 direction = ray.GetPoint(initialDistance) - selectedObject.transform.position;
+                rb.linearVelocity = direction * mouseDragSpeed;
+            }
             yield return waitForFixedUpdate;
         }
     }

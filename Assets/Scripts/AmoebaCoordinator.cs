@@ -1,58 +1,75 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class AmoebaCoordinator : MonoBehaviour
 {
     public List<AmoebaPoint> controlPoints = new();
-
-    public AmoebaCenter centerPoint;
     public List<AmoebaSDFPoint> sdfPoints = new();
 
-    public UnityEvent onPointsRefreshed = new();
+    public AmoebaCenter centerPoint;
+    public Food foodPrefab;
+    public float DeathRadius { get; private set; } = 13.22f;
 
-    [ContextMenu("Refresh Points")]
-    public void RefreshPoints()
+    private void OnEnable()
     {
-        controlPoints = GetComponentsInChildren<AmoebaPoint>().ToList();
-        sdfPoints = GetComponentsInChildren<AmoebaSDFPoint>().ToList();
-        centerPoint = GetComponentInChildren<AmoebaCenter>();
-        onPointsRefreshed.Invoke();
+        AmoebaEater.OnPointAdd += UpdateSDFPoints;
+        AmoebaPoint.OnPointRemove += UpdateSDFPoints;
     }
+
+    private void OnDisable()
+    {
+        AmoebaEater.OnPointAdd -= UpdateSDFPoints;
+        AmoebaPoint.OnPointRemove -= UpdateSDFPoints;
+    }
+
 
     void Awake()
     {
-        RefreshPoints();
+        controlPoints = GetComponentsInChildren<AmoebaPoint>().ToList();
+        centerPoint = GetComponentInChildren<AmoebaCenter>();
+    }
+
+    private void Start()
+    {
+        UpdateSDFPoints();
+    }
+
+    private void UpdateSDFPoints()
+    {
+        sdfPoints.Clear();
+        sdfPoints.Add(centerPoint.GetComponent<AmoebaSDFPoint>());
+        foreach (AmoebaPoint point in controlPoints)
+        {
+            sdfPoints.Add(point.GetComponent<AmoebaSDFPoint>());
+        }
     }
 
     void FixedUpdate()
     {
-        RefreshPoints();
+        centerPoint.transform.localPosition = GetCentroid();
     }
 
-    public List<Vector2> controlPointPositions
+    public List<Vector2> GetControlPointPositions()
     {
-        get
-        {
-            List<Vector2> colliderPointsLS = new();
-            for (int i = 0; i < controlPoints.Count; i++)
+        List<Vector2> colliderPointsLS = new ();
+        for (int i = 0; i<controlPoints.Count; i++)
             {
                 colliderPointsLS.Add(controlPoints[i].transform.localPosition);
             }
-            return colliderPointsLS;
-        }
+        return colliderPointsLS;
     }
+
     public Vector2 GetCentroid()
     {
-        return GetCentroid(controlPointPositions);
+        return CaculateCentroid(GetControlPointPositions());
     }
     public List<Vector2> SortClockwiseControlPoints()
     {
-        return SortClockwise(controlPointPositions, GetCentroid(controlPointPositions));
+        return SortClockwise(GetControlPointPositions(), GetCentroid());
     }
 
-    public static Vector2 GetCentroid(List<Vector2> points)
+    public static Vector2 CaculateCentroid(List<Vector2> points)
     {
         if (points == null || points.Count == 0)
         {
@@ -67,6 +84,7 @@ public class AmoebaCoordinator : MonoBehaviour
 
         return sum / points.Count;
     }
+
     // standard angular point sort
     public static List<Vector2> SortClockwise(List<Vector2> points, Vector2 centroid)
     {
