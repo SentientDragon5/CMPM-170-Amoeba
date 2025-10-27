@@ -29,6 +29,7 @@ Material:
     - _EdgeThickness: 0.05
     - _FoamWidth: 0.057
     - _Scale: 9.22
+    - _ScrollSpeed: 0.02
     m_Colors:
     - _BlueColor: {r: 0.3609429, g: 0.44210237, b: 0.91823894, a: 0.5019608}
     - _FoamColor: {r: 0.7340294, g: 0.7340294, b: 0.9685534, a: 0.44313726}
