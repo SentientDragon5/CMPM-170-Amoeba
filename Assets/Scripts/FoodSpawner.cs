@@ -3,6 +3,7 @@ using UnityEngine;
 public class FoodSpawner : MonoBehaviour
 {
     public Food foodPrefab;
+    public Transform foodParent;
     public float spawnRate = 2f;
     public float spawnRange = 10f;
 
@@ -33,7 +34,7 @@ public class FoodSpawner : MonoBehaviour
     private void SpawnFood()
     {
         Vector3 spawnLocation = transform.position + (Vector3)Random.insideUnitCircle * spawnRange;
-        Instantiate(foodPrefab, spawnLocation, Quaternion.identity);
+        Instantiate(foodPrefab, spawnLocation, Quaternion.identity, foodParent);
     }
 
     private void OnDrawGizmos()

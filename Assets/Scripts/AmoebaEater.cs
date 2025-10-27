@@ -34,6 +34,8 @@ public class AmoebaEater : MonoBehaviour
 
     void GainPoint(Food food)
     {
+        if (food.Invincible())
+            return;
         AmoebaPoint newPoint = Instantiate(pointPrefab, food.transform.position, Quaternion.identity, pointParent);
         coordinator.controlPoints.Add(newPoint);
         OnPointAdd?.Invoke();
