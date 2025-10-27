@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(EdgeCollider2D))]
@@ -21,7 +20,7 @@ public class AmoebaCollider : MonoBehaviour
         coordinator = GetComponentInParent<AmoebaCoordinator>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         var colliderPointsLS = coordinator.SortClockwiseControlPoints();
         colliderPointsLS.Add(colliderPointsLS[0]); // close the circle

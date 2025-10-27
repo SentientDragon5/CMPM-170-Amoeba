@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
 
 public class AmoebaPoint : MonoBehaviour
 {
+    public static event Action OnPointRemove;
+
     public AmoebaCenter center;
     public List<GameObject> neighbors = new List<GameObject>();
 
@@ -20,18 +23,13 @@ public class AmoebaPoint : MonoBehaviour
     public float controlPointAlphaNormal = 0.2f;
 
     private AmoebaCoordinator coordinator;
-#if UNITY_EDITOR
-    void OnValidate()
-    {
-        coordinator = GetComponentInParent<AmoebaCoordinator>();
-
-    }
-#endif
+    public AmoebaEater eater;
+    public Food foodPrefab;
+    
     
     private void Awake()
     {
         coordinator = GetComponentInParent<AmoebaCoordinator>();
-        coordinator.onPointsRefreshed.AddListener(GetClosestTwoPoints);
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         if (center == null)
@@ -39,11 +37,34 @@ public class AmoebaPoint : MonoBehaviour
             GameObject _ = GameObject.Find("Amoeba Center");
             center = _.GetComponent<AmoebaCenter>();
         }
+        
     }
 
     private void Start()
     {
+        if (eater == null)
+        {
+            eater = GameObject.Find("Amoeba Collider").GetComponent<AmoebaEater>();
+        }
         GetClosestTwoPoints();
+
+    }
+
+    private void Update()
+    {
+        if (Vector2.Distance(transform.position, center.transform.position) > coordinator.deathRadius)
+        {
+            RemovePoint();
+        }
+    }
+
+    public void RemovePoint()
+    {
+        var g = Instantiate(foodPrefab, transform.position, Quaternion.identity);
+        g.GetComponent<Rigidbody2D>().linearVelocity = GetComponent<Rigidbody2D>().linearVelocity;
+        coordinator.controlPoints.Remove(this);
+        OnPointRemove?.Invoke();
+        Destroy(gameObject);
     }
 
 
@@ -82,8 +103,16 @@ public class AmoebaPoint : MonoBehaviour
         // sorts by distance
         list = list.OrderBy((p) => (p.transform.position - transform.position).sqrMagnitude).ToArray();
 
-        neighbors.Add(list[0]);
-        neighbors.Add(list[1]);
+        if (list.Length > 1)
+        {
+            neighbors.Add(list[0]);
+            neighbors.Add(list[1]);
+        }
+        else
+        {
+            RemovePoint();
+        }
+
     }
 
 }

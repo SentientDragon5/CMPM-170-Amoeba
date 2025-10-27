@@ -120,6 +120,8 @@ MonoBehaviour:
   isBeingDragged: 0
   controlPointAlphaDragged: 0.43
   controlPointAlphaNormal: 0.2
+  eater: {fileID: 0}
+  foodPrefab: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
 --- !u!114 &994397678548034237
 MonoBehaviour:
   m_ObjectHideFlags: 0
