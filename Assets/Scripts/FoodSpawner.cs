@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodSpawner : MonoBehaviour
 {
-    public Food foodPrefab;
+    public List<Food> foodPrefabs;
     public Transform foodParent;
     public float spawnRate = 2f;
     public float spawnRange = 10f;
@@ -31,10 +32,11 @@ public class FoodSpawner : MonoBehaviour
         }
     }
 
+    public GameObject GetFoodPrefab() => foodPrefabs[UnityEngine.Random.Range(0,foodPrefabs.Count)].gameObject;
     private void SpawnFood()
     {
         Vector3 spawnLocation = transform.position + (Vector3)Random.insideUnitCircle * spawnRange;
-        Instantiate(foodPrefab, spawnLocation, Quaternion.identity, foodParent);
+        Instantiate(GetFoodPrefab(), spawnLocation, Quaternion.identity, foodParent);
     }
 
     private void OnDrawGizmos()

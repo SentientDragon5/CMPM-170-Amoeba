@@ -8,7 +8,7 @@ public class AmoebaCoordinator : MonoBehaviour
     public List<AmoebaSDFPoint> sdfPoints = new();
 
     public AmoebaCenter centerPoint;
-    public Food foodPrefab;
+    public FoodSpawner foodSpawner;
     public float DeathRadius { get; private set; } = 13.22f;
 
     private void OnEnable()
@@ -98,5 +98,11 @@ public class AmoebaCoordinator : MonoBehaviour
         }).ToList();
 
         return sortedPoints;
+    }
+
+    public GameObject CreateFood(Vector3 position)
+    {
+        var g = Instantiate(foodSpawner.GetFoodPrefab(), position, Quaternion.identity);
+        return g;
     }
 }

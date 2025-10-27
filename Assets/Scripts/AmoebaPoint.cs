@@ -52,7 +52,7 @@ public class AmoebaPoint : MonoBehaviour
 
     public void RemovePoint()
     {
-        var g = Instantiate(coordinator.foodPrefab, transform.position, Quaternion.identity);
+        var g = coordinator.CreateFood(transform.position);
         g.GetComponent<Rigidbody2D>().linearVelocity = GetComponent<Rigidbody2D>().linearVelocity;
         coordinator.controlPoints.Remove(this);
         OnPointRemove?.Invoke();
