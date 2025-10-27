@@ -6,6 +6,7 @@ Shader "Custom/VoronoiFoamWater"
         _FoamColor ("Foam Color", Color) = (1.0, 1.0, 1.0, 1.0)
         _Scale ("Scale", Float) = 10.0
         _FoamWidth ("Foam Width", Range(0.01, 0.5)) = 0.05
+        _ScrollSpeed ("Scroll Speed", Float) = 0.5
     }
     SubShader
     {
@@ -37,6 +38,7 @@ Shader "Custom/VoronoiFoamWater"
             fixed4 _FoamColor;
             float _Scale;
             float _FoamWidth;
+            float _ScrollSpeed;
 
             v2f vert (appdata v)
             {
@@ -84,7 +86,8 @@ Shader "Custom/VoronoiFoamWater"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 uv = i.uv * _Scale;
+                float2 scrollOffset = float2(0.5, 0.5) * _SinTime.w * _ScrollSpeed;
+                float2 uv = i.uv * _Scale + scrollOffset;
                 
                 float v_edge = voronoi_edge(uv);
                 
@@ -97,4 +100,5 @@ Shader "Custom/VoronoiFoamWater"
         }
     }
 }
+
 
