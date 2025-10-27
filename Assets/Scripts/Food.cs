@@ -23,10 +23,13 @@ public class Food : MonoBehaviour
     private Transform amoeba;
     private Vector3 idleTargetPosition;
 
-    
+    public float turnSmoothing = 1;
+    public float runSpeedModifier = 2;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        
+        transform.eulerAngles = new(0, 0, UnityEngine.Random.value * 360f);
     }
 
 
@@ -71,7 +74,8 @@ public class Food : MonoBehaviour
         if (runAway && amoeba != null)
         {
             Vector3 direction = transform.position - amoeba.position;
-            rb.linearVelocity = speed * direction.normalized;
+            transform.eulerAngles = new(0, 0, Mathf.MoveTowardsAngle(transform.eulerAngles.z, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, turnSmoothing * Time.deltaTime));
+            rb.linearVelocity = speed * runSpeedModifier * direction.normalized;
         }
         else
         {
@@ -81,6 +85,7 @@ public class Food : MonoBehaviour
                 idleTargetPosition = GetRandomPoint();
             }
             Vector3 direction = (idleTargetPosition - transform.position).normalized;
+            transform.eulerAngles = new(0, 0, Mathf.MoveTowardsAngle(transform.eulerAngles.z, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, turnSmoothing * Time.deltaTime));
             rb.linearVelocity = speed * direction;
 
         }

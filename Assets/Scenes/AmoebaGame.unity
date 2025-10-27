@@ -306,7 +306,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 0.22
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -397,6 +397,8 @@ MonoBehaviour:
   rend: {fileID: 1681996155}
   zoomMultiplier: 0.4
   multiplierIncrease: 0.05
+  smoothing: 1
+  zoomSmoothing: 0.5
 --- !u!1 &412639774 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 24284987028638524, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
@@ -849,6 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoodSpawner
   foodPrefab: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+  foodParent: {fileID: 695495098}
   spawnRate: 2
   spawnRange: 250
 --- !u!1001 &1460230517
@@ -1483,6 +1486,6 @@ SceneRoots:
   - {fileID: 1820784581}
   - {fileID: 1817677760}
   - {fileID: 1865474670}
-  - {fileID: 1286146533}
   - {fileID: 402106867112675797}
+  - {fileID: 1286146533}
   - {fileID: 695495098}
