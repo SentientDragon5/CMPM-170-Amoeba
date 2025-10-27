@@ -24,6 +24,7 @@ public class AmoebaPoint : MonoBehaviour
     void OnValidate()
     {
         coordinator = GetComponentInParent<AmoebaCoordinator>();
+
     }
 #endif
     
@@ -33,6 +34,11 @@ public class AmoebaPoint : MonoBehaviour
         coordinator.onPointsRefreshed.AddListener(GetClosestTwoPoints);
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        if (center == null)
+        {
+            GameObject _ = GameObject.Find("Amoeba Center");
+            center = _.GetComponent<AmoebaCenter>();
+        }
     }
 
     private void Start()

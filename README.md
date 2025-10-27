@@ -1,13 +1,15 @@
 # CMPM-170-Amoeba
 
 # Todo
-- [ ] movement
+- [x] movement
   - [x] drag points
   - [x] tension
-- [ ] eating
-  - [ ] add food
-  - [ ] allow food to be eaten
-  - [ ] add a control point or grow?
+- [x] eating
+  - [x] add food
+  - [x] allow food to be eaten
+  - [x] add a control point
+  - [ ] point dies if too far
+  - [ ] refactor so that there is one list of points
 - [x] polish
   - [x] SDFs
   - [x] camera controller

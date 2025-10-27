@@ -1,4 +1,3 @@
-using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,6 +6,7 @@ public class AmoebaEater : MonoBehaviour
 {
     
     private AmoebaCoordinator coordinator;
+
     private EdgeCollider2D col;
     private AmoebaCollider amoebaCollider;
     public UnityEvent refreshPoints;
