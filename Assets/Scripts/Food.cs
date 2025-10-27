@@ -1,8 +1,9 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class Food : MonoBehaviour
 {
+
     private Rigidbody2D rb;
 
     [Header("Detection")]
@@ -87,7 +88,7 @@ public class Food : MonoBehaviour
 
     private Vector3 GetRandomPoint()
     {
-        return transform.position + (Vector3)Random.insideUnitCircle * detectionRange;
+        return transform.position + (Vector3)UnityEngine.Random.insideUnitCircle * detectionRange;
     }
 
     private void OnDrawGizmos()

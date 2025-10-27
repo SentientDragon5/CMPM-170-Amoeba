@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -86,7 +85,10 @@ public class Dragging : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, dragRadius);
 
-        Vector2 mousePos = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Gizmos.DrawWireSphere(mousePos, dragRadius);
+        if (_mainCam)
+        {
+            Vector2 mousePos = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Gizmos.DrawWireSphere(mousePos, dragRadius);
+        }
     }
 }

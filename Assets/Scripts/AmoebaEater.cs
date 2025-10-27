@@ -1,10 +1,10 @@
-using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(EdgeCollider2D))]
 public class AmoebaEater : MonoBehaviour
 {
+
     private EdgeCollider2D col;
     public UnityEvent<Food> onEat;
     void Start()

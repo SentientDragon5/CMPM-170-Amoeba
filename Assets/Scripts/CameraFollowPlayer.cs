@@ -7,6 +7,7 @@ public class CameraFollowPlayer : MonoBehaviour
     public AmoebaSDFRenderer rend;
 
     public float zoomMultiplier = 1;
+    public float multiplierIncrease = 0.15f;
 
     void Awake()
     {
@@ -16,5 +17,10 @@ public class CameraFollowPlayer : MonoBehaviour
     {
         cam.orthographicSize = rend.transform.lossyScale.x * zoomMultiplier;
         transform.position = new Vector3(target.transform.position.x , target.transform.position.y, -10f);
+    }
+
+    public void IncreaseZoomMultiplier()
+    {
+        zoomMultiplier += multiplierIncrease;
     }
 }
