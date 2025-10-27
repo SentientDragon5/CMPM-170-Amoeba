@@ -10,16 +10,22 @@ public class AmoebaCenter : MonoBehaviour
     public bool drawLines = false;
     public LayerMask amoebaPointLayer;
 
-    public List<Transform> points = new List<Transform>();
-    // public EdgeCollider2D _collider;
+    private AmoebaCoordinator coordinator;
+#if UNITY_EDITOR
+    void OnValidate()
+    {
+        coordinator = GetComponentInParent<AmoebaCoordinator>();
+    }
+#endif
+    
+    public List<AmoebaPoint> points => coordinator.controlPoints;
+    void Start()
+    {
+        coordinator = GetComponentInParent<AmoebaCoordinator>();
+    }
 
     private void Awake()
     {
-    }
-
-    private void Start()
-    {
-        ScanPoints();
     }
 
     private void Update()
@@ -69,42 +75,42 @@ public class AmoebaCenter : MonoBehaviour
 
     // yes i know this is bad
     // no i will not try to optimize it
-    private void ScanPoints()
-    {
-        for (float t = 0; t <= 1; t += 1f / (raycastResolution / 4))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(1, 0, 0), new Vector3(0, 1, 0), t), 100f, amoebaPointLayer);
+    // private void ScanPoints()
+    // {
+    //     for (float t = 0; t <= 1; t += 1f / (raycastResolution / 4))
+    //     {
+    //         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(1, 0, 0), new Vector3(0, 1, 0), t), 100f, amoebaPointLayer);
 
-            if (hit && hit.collider.CompareTag("Draggable") && !points.Contains(hit.transform))
-            {
-                points.Add(hit.transform);
-            }
-        }
-        for (float t = 0; t <= 1; t += 1f / (raycastResolution / 4))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(0, 1, 0), new Vector3(-1, 0, 0), t), 100f, amoebaPointLayer);
-            if (hit && hit.collider.CompareTag("Draggable") && !points.Contains(hit.transform))
-            {
-                points.Add(hit.transform);
-            }
-        }
-        for (float t = 0; t <= 1; t += 1f / (raycastResolution / 4))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(-1, 0, 0), new Vector3(0, -1, 0), t), 100f, amoebaPointLayer);
-            if (hit && hit.collider.CompareTag("Draggable") && !points.Contains(hit.transform))
-            {
-                points.Add(hit.transform);
-            }
-        }
-        for (float t = 0; t <= 1; t += 1f / (raycastResolution / 4))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(0, -1, 0), new Vector3(1, 0, 0), t), 100f, amoebaPointLayer);
-            if (hit && hit.collider.CompareTag("Draggable") && !points.Contains(hit.transform))
-            {
-                points.Add(hit.transform);
-            }
-        }
-    }
+    //         if (hit && hit.collider.CompareTag("Draggable") && !points.Contains(hit.transform))
+    //         {
+    //             points.Add(hit.transform);
+    //         }
+    //     }
+    //     for (float t = 0; t <= 1; t += 1f / (raycastResolution / 4))
+    //     {
+    //         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(0, 1, 0), new Vector3(-1, 0, 0), t), 100f, amoebaPointLayer);
+    //         if (hit && hit.collider.CompareTag("Draggable") && !points.Contains(hit.transform))
+    //         {
+    //             points.Add(hit.transform);
+    //         }
+    //     }
+    //     for (float t = 0; t <= 1; t += 1f / (raycastResolution / 4))
+    //     {
+    //         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(-1, 0, 0), new Vector3(0, -1, 0), t), 100f, amoebaPointLayer);
+    //         if (hit && hit.collider.CompareTag("Draggable") && !points.Contains(hit.transform))
+    //         {
+    //             points.Add(hit.transform);
+    //         }
+    //     }
+    //     for (float t = 0; t <= 1; t += 1f / (raycastResolution / 4))
+    //     {
+    //         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.Lerp(new Vector3(0, -1, 0), new Vector3(1, 0, 0), t), 100f, amoebaPointLayer);
+    //         if (hit && hit.collider.CompareTag("Draggable") && !points.Contains(hit.transform))
+    //         {
+    //             points.Add(hit.transform);
+    //         }
+    //     }
+    // }
 
     // readonly List<Vector3> v3 = new List<Vector3>();
     // readonly List<Vector2> v2 = new List<Vector2>();

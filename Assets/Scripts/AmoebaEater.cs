@@ -5,6 +5,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(AmoebaCollider))]
 public class AmoebaEater : MonoBehaviour
 {
+    
+    private AmoebaCoordinator coordinator;
     private EdgeCollider2D col;
     private AmoebaCollider amoebaCollider;
     public UnityEvent refreshPoints;
@@ -12,7 +14,9 @@ public class AmoebaEater : MonoBehaviour
     {
         col = GetComponent<EdgeCollider2D>();
         col.isTrigger = true;
-        amoebaCollider = GetComponent<AmoebaCollider>();
+
+        coordinator = GetComponentInParent<AmoebaCoordinator>();
+        refreshPoints.AddListener(coordinator.RefreshPoints);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -25,7 +29,12 @@ public class AmoebaEater : MonoBehaviour
             ConsumeFood(food);
         }
     }
-
+#if UNITY_EDITOR
+    void OnValidate()
+    {
+        coordinator = GetComponentInParent<AmoebaCoordinator>();
+    }
+#endif
     public GameObject pointPrefab;
     public Transform pointParent;
     void GainPoint(Food food)
@@ -49,19 +58,14 @@ public class AmoebaEater : MonoBehaviour
 
     void Update()
     {
-        var points = amoebaCollider.points;
-        var dirty = false;
+        var points = coordinator.controlPoints;
         for (int i = points.Count - 1; i >= 0; i--)
         {
             if (Vector2.Distance(center.transform.position, points[i].transform.position) > dieRadius)
             {
                 PointDie(points[i]);
-                dirty = true;
+                refreshPoints.Invoke();
             }
-        }
-        if (dirty)
-        {
-            refreshPoints.Invoke();
         }
     }
     public GameObject foodPrefab;

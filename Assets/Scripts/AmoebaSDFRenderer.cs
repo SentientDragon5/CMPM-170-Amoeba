@@ -4,10 +4,12 @@ using UnityEngine;
 [ExecuteAlways]
 public class AmoebaSDFRenderer : MonoBehaviour
 {
+    
+    private AmoebaCoordinator coordinator;
     // x, y = position (0-1 UV space)
     // z = radius
     // w = blend strength
-    public AmoebaSDFPoint[] amoebaPoints;
+    public AmoebaSDFPoint[] amoebaPoints => coordinator.sdfPoints.ToArray();
 
     public float margin = 2f;
     private Vector4[] points;
@@ -20,24 +22,14 @@ public class AmoebaSDFRenderer : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         mat = spriteRenderer.sharedMaterial;
+
+        coordinator = GetComponentInParent<AmoebaCoordinator>();
     }
-
-
-    public Transform pointParent;
-    [ContextMenu("Refresh Points")]
-    public void RefreshPoints()
+    void OnValidate()
     {
-        List<AmoebaSDFPoint> pts = new();
-        for (int i = 0; i < pointParent.childCount; i++)
-        {
-            var p = pointParent.GetChild(i);
-            if (p.TryGetComponent(out AmoebaSDFPoint ap))
-            {
-                pts.Add(ap);
-            }
-        }
-        amoebaPoints = pts.ToArray();
+        coordinator = GetComponentInParent<AmoebaCoordinator>();
     }
+
 
     void Update()
     {
