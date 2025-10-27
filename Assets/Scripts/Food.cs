@@ -25,13 +25,17 @@ public class Food : MonoBehaviour
 
     public float turnSmoothing = 1;
     public float runSpeedModifier = 2;
+    public float spawnTime = -1;
+    public float invincibilityTime = 1f;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+
         transform.eulerAngles = new(0, 0, UnityEngine.Random.value * 360f);
+        spawnTime = Time.time;
     }
 
+    public bool Invincible() => (Time.time - spawnTime < invincibilityTime);
 
     private void Update()
     {

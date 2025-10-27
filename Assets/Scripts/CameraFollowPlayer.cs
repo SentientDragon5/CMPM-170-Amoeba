@@ -18,7 +18,7 @@ public class CameraFollowPlayer : MonoBehaviour
     void Update()
     {
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, rend.transform.lossyScale.x * zoomMultiplier, zoomSmoothing * Time.deltaTime);
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.transform.position.x , target.transform.position.y, -10f),smoothing);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(target.transform.position.x , target.transform.position.y, -10f),smoothing * Time.deltaTime);
     }
 
     public void IncreaseZoomMultiplier()
