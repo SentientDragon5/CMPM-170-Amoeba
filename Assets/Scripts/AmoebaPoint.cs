@@ -21,17 +21,18 @@ public class AmoebaPoint : MonoBehaviour
 
     private void OnValidate()
     {
-        if (center == null)
-        {
-            GameObject _ = GameObject.Find("Amoeba Center");
-            center = _.GetComponent<AmoebaCenter>();
-        }
+
     }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        if (center == null)
+        {
+            GameObject _ = GameObject.Find("Amoeba Center");
+            center = _.GetComponent<AmoebaCenter>();
+        }
     }
 
     private void Start()
