@@ -7,24 +7,25 @@ public class AmoebaPoint : MonoBehaviour
 {
     public static event Action OnPointRemove;
 
-    public AmoebaCenter center;
     public List<GameObject> neighbors = new List<GameObject>();
 
+    [Header("Distances to Maintain")]
     public float distanceCenter = 4;
     public float distanceNeighbors = 4;
+    [Header("Speed")]
     public float speedAwayFromCenter = 2f;
     public float speedTowardsEachOther = 0.2f;
-    public bool isBeingDragged = false;
 
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
 
+    [Header("Colors")]
     public float controlPointAlphaDragged = 0.8f;
     public float controlPointAlphaNormal = 0.2f;
 
+    [HideInInspector] public bool isBeingDragged = false;
+    
+    private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private AmoebaCoordinator coordinator;
-    public AmoebaEater eater;
-    public Food foodPrefab;
     
     
     private void Awake()
@@ -32,27 +33,18 @@ public class AmoebaPoint : MonoBehaviour
         coordinator = GetComponentInParent<AmoebaCoordinator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        if (center == null)
-        {
-            GameObject _ = GameObject.Find("Amoeba Center");
-            center = _.GetComponent<AmoebaCenter>();
-        }
         
     }
 
     private void Start()
     {
-        if (eater == null)
-        {
-            eater = GameObject.Find("Amoeba Collider").GetComponent<AmoebaEater>();
-        }
         GetClosestTwoPoints();
 
     }
 
     private void Update()
     {
-        if (Vector2.Distance(transform.position, center.transform.position) > coordinator.deathRadius)
+        if (Vector2.Distance(transform.position, coordinator.centerPoint.transform.position) > coordinator.DeathRadius)
         {
             RemovePoint();
         }
@@ -60,7 +52,7 @@ public class AmoebaPoint : MonoBehaviour
 
     public void RemovePoint()
     {
-        var g = Instantiate(foodPrefab, transform.position, Quaternion.identity);
+        var g = Instantiate(coordinator.foodPrefab, transform.position, Quaternion.identity);
         g.GetComponent<Rigidbody2D>().linearVelocity = GetComponent<Rigidbody2D>().linearVelocity;
         coordinator.controlPoints.Remove(this);
         OnPointRemove?.Invoke();
@@ -72,12 +64,13 @@ public class AmoebaPoint : MonoBehaviour
     private void FixedUpdate()
     {
         // moves the point away from the center
-        if (Vector2.Distance(transform.position, center.transform.position) < distanceCenter)
+        if (Vector2.Distance(transform.position, coordinator.centerPoint.transform.position) < distanceCenter)
         {
-            Vector3 direction = transform.position - center.transform.position;
+            Vector3 direction = transform.position - coordinator.centerPoint.transform.position;
             rb.AddForce(direction * speedAwayFromCenter);
         }
-        //if (isBeingDragged) return;
+
+
         GetClosestTwoPoints();
         // moves this point towards other points
         foreach (GameObject point in neighbors)

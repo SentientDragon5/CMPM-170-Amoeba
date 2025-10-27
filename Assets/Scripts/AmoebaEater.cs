@@ -7,18 +7,14 @@ public class AmoebaEater : MonoBehaviour
     public static event Action OnPointAdd;
 
     private AmoebaCoordinator coordinator;
-
     private EdgeCollider2D col;
-    private AmoebaCollider amoebaCollider;
 
+    [Header("Points")]
     public AmoebaPoint pointPrefab;
     public Transform pointParent;
 
-    public GameObject foodPrefab;
-    public Transform foodParent;
-
-    public float dieRadius;
-    public AmoebaCenter center;
+    [Header("Food")]
+    public Food foodPrefab;
 
     void Start()
     {
@@ -43,15 +39,4 @@ public class AmoebaEater : MonoBehaviour
         OnPointAdd?.Invoke();
         Destroy(food.gameObject);
     }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(center.transform.position, dieRadius);
-    }
-
-
-
-
-
 }

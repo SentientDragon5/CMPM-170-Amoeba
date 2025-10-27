@@ -138,12 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc33590b9c2f944189d903b95e1a340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaEater
-  pointPrefab: {fileID: 8509268966379366426, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+  pointPrefab: {fileID: 17484265177765806, guid: 312e60965a3cf6d419155748176a9737, type: 3}
   pointParent: {fileID: 2021137121717711414}
-  foodPrefab: {fileID: 1894757690544358804, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
-  foodParent: {fileID: 0}
-  dieRadius: 13.22
-  center: {fileID: 7975792205592567722}
+  foodPrefab: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
 --- !u!1 &7914463860045119312
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,6 +306,7 @@ MonoBehaviour:
   - {fileID: 8784257568212539602}
   - {fileID: 5234712304881789890}
   centerPoint: {fileID: 7975792205592567722}
+  foodPrefab: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
   deathRadius: 13.22
 --- !u!1001 &1663618438409832502
 PrefabInstance:

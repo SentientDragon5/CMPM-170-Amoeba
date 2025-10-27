@@ -1265,15 +1265,7 @@ PrefabInstance:
       propertyPath: foodParent
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 672695388613336307, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
-      propertyPath: pointPrefab
-      value: 
-      objectReference: {fileID: 17484265177765806, guid: 312e60965a3cf6d419155748176a9737, type: 3}
     - target: {fileID: 1668656227428671384, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
-      propertyPath: foodPrefab
-      value: 
-      objectReference: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
-    - target: {fileID: 2088675104868849448, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
       propertyPath: foodPrefab
       value: 
       objectReference: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}

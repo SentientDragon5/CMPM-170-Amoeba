@@ -8,7 +8,8 @@ public class AmoebaCoordinator : MonoBehaviour
     public List<AmoebaSDFPoint> sdfPoints = new();
 
     public AmoebaCenter centerPoint;
-    public float deathRadius = 13.22f;
+    public Food foodPrefab;
+    public float DeathRadius { get; private set; } = 13.22f;
 
     private void OnEnable()
     {
