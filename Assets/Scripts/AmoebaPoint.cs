@@ -19,13 +19,19 @@ public class AmoebaPoint : MonoBehaviour
     public float controlPointAlphaDragged = 0.8f;
     public float controlPointAlphaNormal = 0.2f;
 
-    private void OnValidate()
+    private AmoebaCoordinator coordinator;
+#if UNITY_EDITOR
+    void OnValidate()
     {
+        coordinator = GetComponentInParent<AmoebaCoordinator>();
 
     }
-
+#endif
+    
     private void Awake()
     {
+        coordinator = GetComponentInParent<AmoebaCoordinator>();
+        coordinator.onPointsRefreshed.AddListener(GetClosestTwoPoints);
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         if (center == null)
@@ -37,7 +43,6 @@ public class AmoebaPoint : MonoBehaviour
 
     private void Start()
     {
-        neighbors.Clear();
         GetClosestTwoPoints();
     }
 
@@ -52,7 +57,7 @@ public class AmoebaPoint : MonoBehaviour
             rb.AddForce(direction * speedAwayFromCenter);
         }
         //if (isBeingDragged) return;
-
+        GetClosestTwoPoints();
         // moves this point towards other points
         foreach (GameObject point in neighbors)
         {
@@ -68,6 +73,7 @@ public class AmoebaPoint : MonoBehaviour
 
     private void GetClosestTwoPoints()
     {
+        neighbors.Clear();
         GameObject[] list = GameObject.FindGameObjectsWithTag("Draggable");
 
         // remove self from list

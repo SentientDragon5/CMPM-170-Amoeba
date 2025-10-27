@@ -5,71 +5,28 @@ using UnityEngine;
 [RequireComponent(typeof(EdgeCollider2D))]
 public class AmoebaCollider : MonoBehaviour
 {
-    public List<AmoebaPoint> points;
+    private AmoebaCoordinator coordinator;
+#if UNITY_EDITOR
+    void OnValidate()
+    {
+        coordinator = GetComponentInParent<AmoebaCoordinator>();
+    }
+#endif
+    
+    public List<AmoebaPoint> points => coordinator.controlPoints;
     private EdgeCollider2D col;
     void Start()
     {
         col = GetComponent<EdgeCollider2D>();
-        RefreshPoints();
-    }
-
-    public Transform pointParent;
-    [ContextMenu("Refresh Points")]
-    public void RefreshPoints()
-    {
-        points.Clear();
-        for (int i = 0; i < pointParent.childCount; i++)
-        {
-            var p = pointParent.GetChild(i);
-            if (p.TryGetComponent(out AmoebaPoint ap))
-            {
-                points.Add(ap);
-            }
-        }
+        coordinator = GetComponentInParent<AmoebaCoordinator>();
     }
 
     void FixedUpdate()
     {
-        List<Vector2> colliderPointsLS = new ();
-        for (int i = 0; i < points.Count; i++)
-        {
-            colliderPointsLS.Add(points[i].transform.localPosition);
-        }
-        colliderPointsLS = SortClockwise(colliderPointsLS);
+        var colliderPointsLS = coordinator.SortClockwiseControlPoints();
         colliderPointsLS.Add(colliderPointsLS[0]); // close the circle
         col.points = colliderPointsLS.ToArray();
     }
 
-    // standard angular point sort
-    public static List<Vector2> SortClockwise(List<Vector2> points)
-    {
-        if (points == null || points.Count == 0)
-            return new List<Vector2>();
-
-        Vector2 centroid = GetCentroid(points);
-
-        List<Vector2> sortedPoints = points.OrderBy(point =>
-        {
-            float angle = Mathf.Atan2(point.y - centroid.y, point.x - centroid.x);
-            return -angle;
-        }).ToList();
-
-        return sortedPoints;
-    }
-
-    public static Vector2 GetCentroid(List<Vector2> points)
-    {
-        if (points == null || points.Count == 0)
-        {
-            return Vector2.zero;
-        }
-
-        Vector2 sum = Vector2.zero;
-        foreach (Vector2 p in points)
-        {
-            sum += p;
-        }
-
-        return sum / points.Count;
-    }
+    
 }
