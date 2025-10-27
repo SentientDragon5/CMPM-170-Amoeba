@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3163176209031646091}
   - component: {fileID: 289100449334876212}
   - component: {fileID: 3927727701817627328}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,12 +114,14 @@ MonoBehaviour:
   detectionInterval: 1
   amoebaLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   speed: 0.5
   runAway: 0
   exitRunawayTime: 2
   turnSmoothing: 1
   runSpeedModifier: 2
+  spawnTime: -1
+  invincibilityTime: 1
 --- !u!1 &3427480587868718607
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8396359953059021685}
   - component: {fileID: 1226365263932462756}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,8 +223,7 @@ GameObject:
   - component: {fileID: 9214970147480516581}
   - component: {fileID: 5357733457017106924}
   - component: {fileID: 6413999490422465653}
-  - component: {fileID: 7315789428103846540}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,28 +319,3 @@ MonoBehaviour:
   points:
   - {x: 0.5, y: 0.6, z: 0.1, w: 0.7}
   - {x: 0.5, y: 0.25, z: 0.06, w: 0.4}
---- !u!114 &7315789428103846540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7698947516038721719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e7cf58e7a5192e409658f1f28889386, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoodRenderer
-  materials:
-  - {fileID: 2100000, guid: 93bf27c9d71541a4abd5445b11bd1526, type: 2}
-  - {fileID: 2100000, guid: 94a8fc8f3c011cb4f860b56d9046716e, type: 2}
-  - {fileID: 2100000, guid: 3e7d92dccfdfe6d4292daaa2556a6770, type: 2}
-  - {fileID: 2100000, guid: ce40658809ad942429a609a65233763b, type: 2}
-  - {fileID: 2100000, guid: 2e585b0a3a1a47b4c9a63db04c7e7bb1, type: 2}
-  nucleusColors:
-  - {r: 0.47058824, g: 0.8117647, b: 0.8060289, a: 0.5529412}
-  - {r: 0.5034579, g: 0.47058824, b: 0.8117647, a: 0.5529412}
-  - {r: 0.47058824, g: 0.8117647, b: 0.50435346, a: 0.5529412}
-  - {r: 0.67545724, g: 0.47058824, b: 0.8117647, a: 0.5529412}
-  - {r: 0.8117647, g: 0.5150502, b: 0.4705882, a: 0.5529412}
-  presetIndex: 0
