@@ -270,7 +270,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5af46e37af1e805448528042cec5759a, type: 2}
+  - {fileID: 2100000, guid: 2e585b0a3a1a47b4c9a63db04c7e7bb1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -330,4 +330,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7cf58e7a5192e409658f1f28889386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoodRenderer
-  sdf_mat: {fileID: 2100000, guid: 5af46e37af1e805448528042cec5759a, type: 2}
+  materials:
+  - {fileID: 2100000, guid: 93bf27c9d71541a4abd5445b11bd1526, type: 2}
+  - {fileID: 2100000, guid: 94a8fc8f3c011cb4f860b56d9046716e, type: 2}
+  - {fileID: 2100000, guid: 3e7d92dccfdfe6d4292daaa2556a6770, type: 2}
+  - {fileID: 2100000, guid: ce40658809ad942429a609a65233763b, type: 2}
+  - {fileID: 2100000, guid: 2e585b0a3a1a47b4c9a63db04c7e7bb1, type: 2}
+  nucleusColors:
+  - {r: 0.47058824, g: 0.8117647, b: 0.8060289, a: 0.5529412}
+  - {r: 0.5034579, g: 0.47058824, b: 0.8117647, a: 0.5529412}
+  - {r: 0.47058824, g: 0.8117647, b: 0.50435346, a: 0.5529412}
+  - {r: 0.67545724, g: 0.47058824, b: 0.8117647, a: 0.5529412}
+  - {r: 0.8117647, g: 0.5150502, b: 0.4705882, a: 0.5529412}
+  presetIndex: 0

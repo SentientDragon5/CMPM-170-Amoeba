@@ -1,48 +1,29 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodRenderer : MonoBehaviour
 {
     SpriteRenderer sdf_rend;
-    public Material sdf_mat;
-    SpriteRenderer nucleus_rend;
+    public List<Material> materials;
+    public List<Color> nucleusColors = new();
 
+    SpriteRenderer nucleus_rend;
+    public int presetIndex;
+
+    [ContextMenu("Add base color")]
+    void AddBaseColor()
+    {
+        nucleusColors.Add(new Color(0.8117647f, 0.5150502f, 0.4705882f, 0.5529412f));
+    }
+    [ContextMenu("Randomize Preset")]
     void Start()
     {
         sdf_rend = GetComponent<SpriteRenderer>();
-        sdf_mat = Instantiate(sdf_rend.sharedMaterial);
-        sdf_rend.material = sdf_mat;
-        float hueOffset = UnityEngine.Random.value;
-        
         nucleus_rend = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        presetIndex = Mathf.FloorToInt(UnityEngine.Random.value * materials.Count);
 
-        Color color;
-        float h, s, v, a;
-
-
-        color = sdf_mat.GetColor("_CircleColor");
-        a = color.a;
-        Color.RGBToHSV(color, out h, out s, out v);
-        color = Color.HSVToRGB(h += hueOffset, s, v);
-        color.a = a;
-        sdf_mat.SetColor("_CircleColor", color);
-
-        color = sdf_mat.GetColor("_OutlineColor");
-        a = color.a;
-        Color.RGBToHSV(color, out h, out s, out v);
-        color = Color.HSVToRGB(h += hueOffset, s, v);
-        color.a = a;
-        sdf_mat.SetColor("_OutlineColor", color);
-
-        Color.RGBToHSV(nucleus_rend.color, out h, out s, out v);
-        nucleus_rend.color = Color.HSVToRGB(h += hueOffset, s, v);
-
-        
-        color = nucleus_rend.color;
-        a = color.a;
-        Color.RGBToHSV(color, out h, out s, out v);
-        color = Color.HSVToRGB(h += hueOffset, s, v);
-        color.a = a;
-        nucleus_rend.color = color;
+        sdf_rend.material = materials[presetIndex];
+        nucleus_rend.color = nucleusColors[presetIndex];
     }
     
 }
