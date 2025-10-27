@@ -138,15 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc33590b9c2f944189d903b95e1a340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaEater
-  refreshPoints:
-    m_PersistentCalls:
-      m_Calls: []
-  pointPrefab: {fileID: 8509268966379366426, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+  pointPrefab: {fileID: 17484265177765806, guid: 312e60965a3cf6d419155748176a9737, type: 3}
   pointParent: {fileID: 2021137121717711414}
-  dieRadius: 13.22
-  center: {fileID: 7975792205592567722}
-  foodPrefab: {fileID: 1894757690544358804, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
-  foodParent: {fileID: 0}
+  foodPrefab: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
 --- !u!1 &7914463860045119312
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +298,6 @@ MonoBehaviour:
   - {fileID: 2166259330740636703}
   - {fileID: 8364628186601369025}
   - {fileID: 4996670842815913681}
-  centerPoint: {fileID: 7975792205592567722}
   sdfPoints:
   - {fileID: 1731735118763570148}
   - {fileID: 1935020945683081867}
@@ -312,9 +305,9 @@ MonoBehaviour:
   - {fileID: 1432931731851950348}
   - {fileID: 8784257568212539602}
   - {fileID: 5234712304881789890}
-  onPointsRefreshed:
-    m_PersistentCalls:
-      m_Calls: []
+  centerPoint: {fileID: 7975792205592567722}
+  foodPrefab: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+  deathRadius: 13.22
 --- !u!1001 &1663618438409832502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -415,6 +408,10 @@ PrefabInstance:
       propertyPath: center
       value: 
       objectReference: {fileID: 7975792205592567722}
+    - target: {fileID: 17484265177765806, guid: 312e60965a3cf6d419155748176a9737, type: 3}
+      propertyPath: foodPrefab
+      value: 
+      objectReference: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
     - target: {fileID: 4888963437282286292, guid: 312e60965a3cf6d419155748176a9737, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.86
