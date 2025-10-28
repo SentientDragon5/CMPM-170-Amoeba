@@ -26,8 +26,9 @@ public class AmoebaPoint : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private AmoebaCoordinator coordinator;
-    
-    
+
+    public Color defaultColor;
+    public Color warningColor;
     private void Awake()
     {
         coordinator = GetComponentInParent<AmoebaCoordinator>();
@@ -38,16 +39,29 @@ public class AmoebaPoint : MonoBehaviour
 
     private void Start()
     {
+        defaultColor = sr.color;
         GetClosestTwoPoints();
 
     }
 
     private void Update()
     {
+        if (Vector2.Distance(transform.position, coordinator.centerPoint.transform.position) > coordinator.DeathRadius * .80f)
+        {
+            sr.color = warningColor;
+        }
+        else 
+        {
+            sr.color = defaultColor;
+        }
+
         if (Vector2.Distance(transform.position, coordinator.centerPoint.transform.position) > coordinator.DeathRadius)
         {
             RemovePoint();
         }
+
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, isBeingDragged ? controlPointAlphaDragged : controlPointAlphaNormal);
+
     }
 
     public void RemovePoint()
@@ -82,7 +96,6 @@ public class AmoebaPoint : MonoBehaviour
             }
         }
 
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, isBeingDragged ? controlPointAlphaDragged : controlPointAlphaNormal);
     }
 
     private void GetClosestTwoPoints()

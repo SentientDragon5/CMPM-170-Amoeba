@@ -1515,14 +1515,50 @@ PrefabInstance:
       propertyPath: foodPrefab
       value: 
       objectReference: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+    - target: {fileID: 2088675104868849448, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088675104868849448, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088675104868849448, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2166259330740636703, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
       propertyPath: foodPrefab
       value: 
       objectReference: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+    - target: {fileID: 2166259330740636703, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166259330740636703, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166259330740636703, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4996670842815913681, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
       propertyPath: foodPrefab
       value: 
       objectReference: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+    - target: {fileID: 4996670842815913681, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4996670842815913681, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4996670842815913681, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7000594543243297647, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
       propertyPath: m_Resource
       value: 
@@ -1535,6 +1571,18 @@ PrefabInstance:
       propertyPath: foodPrefab
       value: 
       objectReference: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+    - target: {fileID: 8364628186601369025, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364628186601369025, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364628186601369025, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+      propertyPath: warningColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8477797971063019712, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
       propertyPath: m_Name
       value: Amoeba
