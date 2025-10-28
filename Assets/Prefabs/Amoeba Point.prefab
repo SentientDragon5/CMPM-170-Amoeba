@@ -111,17 +111,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab6b98cb774f5744ba5a14a89c0c68d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaPoint
-  center: {fileID: 0}
   neighbors: []
   distanceCenter: 4
   distanceNeighbors: 4
   speedAwayFromCenter: 2
   speedTowardsEachOther: 0.2
-  isBeingDragged: 0
   controlPointAlphaDragged: 0.43
   controlPointAlphaNormal: 0.2
-  eater: {fileID: 0}
-  foodPrefab: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
+  isBeingDragged: 0
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  warningColor: {r: 1, g: 0.009995077, b: 0, a: 0}
 --- !u!114 &994397678548034237
 MonoBehaviour:
   m_ObjectHideFlags: 0

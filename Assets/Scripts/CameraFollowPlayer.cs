@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Timers;
 using UnityEngine;
 
 public class CameraFollowPlayer : MonoBehaviour
@@ -11,6 +13,19 @@ public class CameraFollowPlayer : MonoBehaviour
     public float smoothing = 1;
     public float zoomSmoothing = 1;
 
+    private void OnEnable()
+    {
+        AmoebaEater.OnPointAdd += IncreaseZoomMultiplier;
+        AmoebaPoint.OnPointRemove += DecreaseZoomMultiplier;
+    }
+
+    private void OnDisable()
+    {
+        AmoebaEater.OnPointAdd -= IncreaseZoomMultiplier;
+        AmoebaPoint.OnPointRemove -= DecreaseZoomMultiplier;
+    }
+
+
     void Awake()
     {
         cam = GetComponent<Camera>();
@@ -23,6 +38,23 @@ public class CameraFollowPlayer : MonoBehaviour
 
     public void IncreaseZoomMultiplier()
     {
-        zoomMultiplier += multiplierIncrease;
+        StartCoroutine(LerpTo(zoomMultiplier, zoomMultiplier + multiplierIncrease, 1f));
+    }
+
+    public void DecreaseZoomMultiplier()
+    {
+        StartCoroutine(LerpTo(zoomMultiplier, zoomMultiplier - multiplierIncrease, 1f));
+    }
+
+    private IEnumerator LerpTo(float start, float end, float duration)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            zoomMultiplier = Mathf.Lerp(start, end, (elapsedTime / duration));
+            elapsedTime += Time.deltaTime;
+        }
+        zoomMultiplier = end;
+        yield return null;
     }
 }

@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &34192655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8477797971063019712, guid: b11049017df587d4cb1fc56ad316b2d8, type: 3}
+  m_PrefabInstance: {fileID: 402106867112675797}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,6 +1038,7 @@ MonoBehaviour:
   foodParent: {fileID: 1286146533}
   spawnRate: 2
   spawnRange: 250
+  amoeba: {fileID: 34192655}
 --- !u!1 &1444001226
 GameObject:
   m_ObjectHideFlags: 0

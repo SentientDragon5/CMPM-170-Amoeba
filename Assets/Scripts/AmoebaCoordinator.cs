@@ -10,18 +10,23 @@ public class AmoebaCoordinator : MonoBehaviour
     public AmoebaCenter centerPoint;
     public FoodSpawner foodSpawner;
 
-    public float DeathRadius { get; private set; } = 13.22f;
+    [field: SerializeField] public float DeathRadius { get; private set; } = 13.22f;
+    
 
     private void OnEnable()
     {
         AmoebaEater.OnPointAdd += UpdateSDFPoints;
+        AmoebaEater.OnPointAdd += IncreaseDeathRadius;
         AmoebaPoint.OnPointRemove += UpdateSDFPoints;
+        AmoebaPoint.OnPointRemove += DecreaseDeathRadius;
     }
 
     private void OnDisable()
     {
         AmoebaEater.OnPointAdd -= UpdateSDFPoints;
+        AmoebaEater.OnPointAdd -= IncreaseDeathRadius;
         AmoebaPoint.OnPointRemove -= UpdateSDFPoints;
+        AmoebaPoint.OnPointRemove -= DecreaseDeathRadius;
     }
 
 
@@ -34,6 +39,15 @@ public class AmoebaCoordinator : MonoBehaviour
     private void Start()
     {
         UpdateSDFPoints();
+    }
+
+    private void IncreaseDeathRadius()
+    {
+        DeathRadius += 1f;
+    }
+    private void DecreaseDeathRadius()
+    {
+        DeathRadius -= 1f;
     }
 
     private void UpdateSDFPoints()
