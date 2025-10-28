@@ -9,6 +9,7 @@ public class AmoebaCoordinator : MonoBehaviour
 
     public AmoebaCenter centerPoint;
     public FoodSpawner foodSpawner;
+
     public float DeathRadius { get; private set; } = 13.22f;
 
     private void OnEnable()

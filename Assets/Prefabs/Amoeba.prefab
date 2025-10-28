@@ -258,8 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64808391d72b0944eb76de8ea3a09eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SDF2Web
-  points:
-  - {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8477797971063019712
 GameObject:
   m_ObjectHideFlags: 0
