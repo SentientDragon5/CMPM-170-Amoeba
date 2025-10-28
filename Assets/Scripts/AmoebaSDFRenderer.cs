@@ -15,32 +15,24 @@ public class AmoebaSDFRenderer : MonoBehaviour
     private Vector4[] points;
 
     private SpriteRenderer spriteRenderer;
-    private Material mat;
-    private ComputeBuffer pointsBuffer;
+    public ISDFRenderer SDFRenderer;
 
     void OnEnable()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        mat = spriteRenderer.sharedMaterial;
-
+        SDFRenderer = GetComponent<ISDFRenderer>();
         coordinator = GetComponentInParent<AmoebaCoordinator>();
     }
     void OnValidate()
     {
-        coordinator = GetComponentInParent<AmoebaCoordinator>();
+        OnEnable();
     }
 
 
     void Update()
     {
-        if (spriteRenderer == null || mat == null)
-        {
-            OnEnable();
-            if (spriteRenderer == null || mat == null) return;
-        }
-
         UpdateSpriteSizeAndPoints();
-        UpdateBuffer();
+        SDFRenderer.SetPoints(points);
     }
 
     void UpdateSpriteSizeAndPoints()
@@ -105,35 +97,7 @@ public class AmoebaSDFRenderer : MonoBehaviour
         }
     }
 
-    void UpdateBuffer()
-    {
-        if (mat == null) return;
-        int count = (points == null) ? 0 : points.Length;
-
-        if (pointsBuffer == null || pointsBuffer.count != count)
-        {
-            if (pointsBuffer != null)
-                pointsBuffer.Release();
-            pointsBuffer = new ComputeBuffer(Mathf.Max(1, count), sizeof(float) * 4);
-        }
-
-        if (count > 0)
-        {
-            pointsBuffer.SetData(points);
-        }
-
-        mat.SetBuffer("_Points", pointsBuffer);
-        mat.SetInt("_PointCount", count);
-    }
-
-    void OnDisable()
-    {
-        if (pointsBuffer != null)
-        {
-            pointsBuffer.Release();
-            pointsBuffer = null;
-        }
-    }
+    
     void OnDrawGizmos()
     {   
         Gizmos.color = Color.blue;

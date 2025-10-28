@@ -222,7 +222,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9214970147480516581}
   - component: {fileID: 5357733457017106924}
-  - component: {fileID: 6413999490422465653}
+  - component: {fileID: 6961168397939973614}
+  - component: {fileID: 6035637186739272983}
   m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
@@ -304,7 +305,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6413999490422465653
+--- !u!114 &6961168397939973614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,9 +314,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7698947516038721719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50efbdb9d442cd6439c4d8aded6f7ea5, type: 3}
+  m_Script: {fileID: 11500000, guid: 64808391d72b0944eb76de8ea3a09eda, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SDF2
+  m_EditorClassIdentifier: Assembly-CSharp::SDF2Web
+--- !u!114 &6035637186739272983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698947516038721719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6760c35aca1c6b44f95cef3e17f60f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SDFDirectRenderer
   points:
-  - {x: 0.5, y: 0.6, z: 0.1, w: 0.7}
-  - {x: 0.5, y: 0.25, z: 0.06, w: 0.4}
+  - {x: 0.5, y: 0.58, z: 0.1, w: 0.2}
+  - {x: 0.5, y: 0.32, z: 0.08, w: 0.2}

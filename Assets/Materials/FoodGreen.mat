@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FoodGreen
-  m_Shader: {fileID: 4800000, guid: a5564c708058ea340964fcefac8c853c, type: 3}
+  m_Shader: {fileID: 4800000, guid: dc4f62094caae6240a1de98ed69a2cd4, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

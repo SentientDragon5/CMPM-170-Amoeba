@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 7835082808607239318}
   - component: {fileID: 3120116303123961465}
   - component: {fileID: 1432353183179364887}
+  - component: {fileID: 7535466290761999867}
   m_Layer: 0
   m_Name: Amoeba Renderer
   m_TagString: Untagged
@@ -245,6 +246,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmoebaSDFRenderer
   margin: 10
+--- !u!114 &7535466290761999867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914463860045119312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64808391d72b0944eb76de8ea3a09eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SDF2Web
+  points:
+  - {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8477797971063019712
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,8 +321,7 @@ MonoBehaviour:
   - {fileID: 8784257568212539602}
   - {fileID: 5234712304881789890}
   centerPoint: {fileID: 7975792205592567722}
-  foodPrefab: {fileID: 3927727701817627328, guid: 26d7ea11781fb924bb5122f1ac68ec0a, type: 3}
-  deathRadius: 13.22
+  foodSpawner: {fileID: 0}
 --- !u!1001 &1663618438409832502
 PrefabInstance:
   m_ObjectHideFlags: 0

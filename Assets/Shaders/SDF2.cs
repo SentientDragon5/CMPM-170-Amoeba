@@ -1,13 +1,17 @@
 using UnityEngine;
 
+public interface ISDFRenderer
+{
+    void SetPoints(Vector4[] points);
+}
+
 [RequireComponent(typeof(Renderer))]
 [ExecuteAlways]
-public class SDF2 : MonoBehaviour
+public class SDF2 : MonoBehaviour, ISDFRenderer
 {
     // x, y = position (0-1 UV space)
     // z = radius
     // w = blend strength
-    public Vector4[] points = new Vector4[1];
 
     private Material mat;
     private ComputeBuffer pointsBuffer;
@@ -17,15 +21,15 @@ public class SDF2 : MonoBehaviour
         mat = GetComponent<Renderer>().sharedMaterial;
     }
 
-    void Update()
-    {
-        UpdateBuffer();
-    }
 
-    void UpdateBuffer()
+    public void SetPoints(Vector4[] newPoints)
     {
-        if (points == null) return;
-        int count = points.Length;
+        if (newPoints == null)
+        {
+            newPoints = new Vector4[0];
+        }
+        
+        int count = newPoints.Length;
         
         if (pointsBuffer == null || pointsBuffer.count != count)
         {
@@ -38,7 +42,7 @@ public class SDF2 : MonoBehaviour
 
         if (count > 0)
         {
-            pointsBuffer.SetData(points);
+            pointsBuffer.SetData(newPoints);
         }
 
         mat.SetBuffer("_Points", pointsBuffer);
