@@ -15,3 +15,4 @@
   - [x] camera controller
   - [x] water
   - [x] playtest
+  - [x] publish
