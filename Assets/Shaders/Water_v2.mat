@@ -58,7 +58,7 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 0
     - _Scale: 100
-    - _Speed: 0.01
+    - _Speed: 1
     m_Colors:
     - _BaseColor: {r: 0, g: 0.10876801, b: 0.18490559, a: 1}
     - _LighterColor: {r: 0, g: 0.24159428, b: 0.2905661, a: 1}
